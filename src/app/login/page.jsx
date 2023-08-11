@@ -20,13 +20,16 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const login = () => {
+
     const router = useRouter()
     const { setAuth,setUser } = Context()
+
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     })
 
+   
     const [formError, setFormError] = useState({
         username: "",
         password: "",
@@ -66,6 +69,7 @@ const login = () => {
 
     console.log(formData.username)
     console.log(formData.password)
+
 
     useEffect(() => {
         CheckError(formData, setFormError)
@@ -119,7 +123,7 @@ const login = () => {
                                 required
                                 fullWidth
                                 autoFocus
-                                autoComplete="password"
+                                // autoComplete="username"
 
                             />
                             <TextField

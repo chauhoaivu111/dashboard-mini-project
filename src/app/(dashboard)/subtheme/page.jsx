@@ -1,17 +1,13 @@
 
 "use client"
-
-
 import React from 'react'
-import { Context } from '../../components/AuthProvider'
+import ToggleTheme from "../../components/ToggleTheme"
 
 function page() {
-  const {user} = Context()
+
   return (
     <div>
-      {user}
-
-      ssssss
+      <ToggleTheme/>
     </div>
   )
 }

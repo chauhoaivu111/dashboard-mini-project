@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 
 "use client"
 
@@ -30,7 +31,7 @@ const layout = ({ children }) => {
             }
         }
 
-    }, [auth])
+    }, [auth, router])
 
 
     if (!auth) {
@@ -39,7 +40,7 @@ const layout = ({ children }) => {
 
 
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     const handleDrawerOpen = () => {
         setOpen(true);

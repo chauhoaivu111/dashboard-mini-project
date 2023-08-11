@@ -26,21 +26,22 @@ const Slider = ({ open, handleDrawerClose }) => {
                 '& .MuiDrawer-paper': {
                     width: drawerWidth,
                     boxSizing: 'border-box',
+                    
                 },
             }}
             variant="persistent"
             anchor="left"
             open={open}
         >
-            <div style={{ height: "62px" }}>
+            <div style={{ height: "63px" }}>
                 <IconButton onClick={handleDrawerClose} sx={{ marginLeft: "198px", marginTop: "15px" }}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : ""}
                 </IconButton>
             </div>
             <Divider />
             <ListItem />
-            <Divider />
-
+         
+            
         </Drawer>
     );
 };

@@ -11,7 +11,7 @@
     }
 
     if (dataenter.password.length < 6 && dataenter.password !== "") {
-        newFormErrors.password = "Password must have at least 6 characters"
+        newFormErrors.password = "at least 6 characters"
     }
         FormError(newFormErrors)
         console.log(newFormErrors)
