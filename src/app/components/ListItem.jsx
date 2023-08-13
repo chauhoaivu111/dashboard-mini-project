@@ -48,9 +48,9 @@ const SlideItem = () => {
       </List>
       <Divider />   
 
-      <List sx={{height:"80%",overflow: "auto"  }} >
+      <List sx={{height:"78%",overflow: "auto"  }} >
         <Link href={"/login"} style={{color:"inherit"}}>
-          <ListItem disablePadding  sx={{paddingTop:"63vh"}}>
+          <ListItem disablePadding  sx={{marginTop:"60vh"}}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />

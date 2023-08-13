@@ -26,7 +26,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const login = () => {
   const router = useRouter();
   const { setAuth, setUser } = Context();
-  const [openSnack, setOpenSnack] = useState(true);
+  const [openSnack, setOpenSnack] = useState();
 
   const [formData, setFormData] = useState({
     username: "",
