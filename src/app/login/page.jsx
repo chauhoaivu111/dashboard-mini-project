@@ -26,7 +26,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const login = () => {
   const router = useRouter();
   const { setAuth, setUser } = Context();
-  const [openSnack, setOpenSnack] = useState("");
+  const [openSnack, setOpenSnack] = useState();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -36,7 +36,6 @@ const login = () => {
   const [formError, setFormError] = useState({
     username: "",
     password: "",
-    // invalid: "",
   });
 
   const handlChange = (e) => {
@@ -60,7 +59,7 @@ const login = () => {
       setAuth(true);
       setUser(username);
     } else {
-    //   setFormError({ invalid: "Invalid password or username" });
+    
       setOpenSnack(true);
     }
   };
@@ -71,6 +70,7 @@ const login = () => {
   useEffect(() => {
     CheckError(formData, setFormError);
   }, [formData.username, formData.password, formData]);
+
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -152,11 +152,7 @@ const login = () => {
                 // autoFocus
                 // autoComplete="current-password"
               />
-              {/* <Box>
-                {formError.invalid && (
-                  <p style={{ color: "red" }}>{formError.invalid}</p>
-                )}
-              </Box> */}
+              
 
               <Stack spacing={2} sx={{ width: '100%', position: 'absolute', top: 0, right: 0 }}>
                 <Snackbar
@@ -183,6 +179,7 @@ const login = () => {
               >
                 Sign In
               </Button>
+              {/* <ButtonList/> */}
             </Box>
           </Box>
         </Grid>
