@@ -26,7 +26,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const login = () => {
   const router = useRouter();
   const { setAuth, setUser } = Context();
-  const [openSnack, setOpenSnack] = useState(true);
+  const [openSnack, setOpenSnack] = useState("");
 
   const [formData, setFormData] = useState({
     username: "",
@@ -134,7 +134,7 @@ const login = () => {
                 margin="normal"
                 required
                 fullWidth
-                autoFocus
+                // autoFocusgi
                 // autoComplete="username"
               />
               <TextField
@@ -149,8 +149,8 @@ const login = () => {
                 value={formData.password}
                 error={Boolean(formError.password)}
                 helperText={formError.password}
-                autoFocus
-                autoComplete="current-password"
+                // autoFocus
+                // autoComplete="current-password"
               />
               {/* <Box>
                 {formError.invalid && (
