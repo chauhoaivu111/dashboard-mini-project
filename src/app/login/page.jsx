@@ -48,29 +48,19 @@ const login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const { username, password } = formData;
-
-    console.log("user", username);
-    console.log("passowrd", password);
-
     if (username === "chauhoaivu111@gmail.com" && password === "hoaivu123") {
       router.push("/");
       setAuth(true);
       setUser(username);
     } else {
-    
       setOpenSnack(true);
     }
   };
 
-  console.log(formData.username);
-  console.log(formData.password);
-
   useEffect(() => {
     CheckError(formData, setFormError);
   }, [formData.username, formData.password, formData]);
-
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -134,8 +124,6 @@ const login = () => {
                 margin="normal"
                 required
                 fullWidth
-                // autoFocusgi
-                // autoComplete="username"
               />
               <TextField
                 margin="normal"
@@ -149,17 +137,16 @@ const login = () => {
                 value={formData.password}
                 error={Boolean(formError.password)}
                 helperText={formError.password}
-                // autoFocus
-                // autoComplete="current-password"
               />
-              
-
-              <Stack spacing={2} sx={{ width: '100%', position: 'absolute', top: 0, right: 0 }}>
+              <Stack
+                spacing={2}
+                sx={{ width: "100%", position: "absolute", top: 0, right: 0 }}
+              >
                 <Snackbar
                   open={openSnack}
                   autoHideDuration={700}
                   onClose={handleClose}
-                  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
                 >
                   <Alert
                     onClose={handleClose}
@@ -179,7 +166,6 @@ const login = () => {
               >
                 Sign In
               </Button>
-              {/* <ButtonList/> */}
             </Box>
           </Box>
         </Grid>

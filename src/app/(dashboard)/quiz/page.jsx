@@ -1,24 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-
 import React, { useState } from "react";
-import quizData from "@/app/components/data/quiz";
 import { Button } from "@mui/material";
-import Coundown from "../../components/Countdown";
+import quizData from "@/app/components/data/quiz";
+import Countdown from "../../components/Countdown";
 import Shuffle from "../../components/Shuffle";
+
 const shuffledQuestions = Shuffle(quizData.questions);
 
-const page = () => {
+const QuizPage = () => {
   const [numberCorrectAnswers, setNumberCorrectAnswers] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState("");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [restartShuffledQuestions, setrestartShuffledQuestions] =useState(shuffledQuestions);
-  const [startquiz, setStartquiz] = useState(false);
+  const [restartShuffledQuestions, setRestartShuffledQuestions] = useState(shuffledQuestions);
+  const [startQuiz, setStartQuiz] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(10);
+  const [isActive, setIsActive] = useState(true);
 
-  console.log(restartShuffledQuestions);
   const currentQuestion = restartShuffledQuestions[currentQuestionIndex];
-  console.log(currentQuestion);
 
   const checkAnswer = (indexAnswer) => {
     setSelectedAnswers(indexAnswer);
@@ -27,8 +26,6 @@ const page = () => {
       setNumberCorrectAnswers(numberCorrectAnswers + 1);
     }
   };
-
-  console.log("selectecanswers", typeof selectedAnswers);
 
   const nextQuestion = () => {
     setSelectedAnswers("");
@@ -41,42 +38,32 @@ const page = () => {
     setCurrentQuestionIndex(0);
     setNumberCorrectAnswers(0);
     setSelectedAnswers("");
-    setrestartShuffledQuestions(Shuffle(quizData.questions));
+    setRestartShuffledQuestions(Shuffle(quizData.questions));
   };
 
-  console.log("dd", quizData.questions.length);
-  console.log("cunrrenINdex", currentQuestionIndex);
-
-  // coundown here
-  const initialTime = 10;
-  const [timeLeft, setTimeLeft] = useState(initialTime);
-  const [isActive, setIsActive] = useState(true);
-
   const handleReset = () => {
-    setTimeLeft(initialTime);
+    setTimeLeft(10);
     setIsActive(true);
   };
 
-  // console.log(isActive)
-
   const handleStart = () => {
-    setStartquiz(true);
+    setStartQuiz(true);
   };
 
   return (
     <div className="main_frame_quiz">
       <h1>Quiz Game</h1>
 
-      {startquiz === false ? (
+      {startQuiz === false ? (
         <Button onClick={handleStart} variant="contained">
-          start Game
+          Start Game
         </Button>
       ) : (
         <div>
           {currentQuestionIndex < quizData.questions.length ? (
             <div>
               <div>
-                <Coundown
+                <Countdown
                   timeLeft={timeLeft}
                   setTimeLeft={setTimeLeft}
                   isActive={isActive}
@@ -84,65 +71,35 @@ const page = () => {
                 />
 
                 <h2>{currentQuestion.question}</h2>
-{/* need split -------------------------------------------------------------------------------------------------------------- */}
+
                 {currentQuestion.questionType === "text" ? (
-                  <div>
-                    {currentQuestion.answers.map((answers, index) => (
-                      <button
-                        variant="outlined"
-                        key={index}
-                        onClick={() => checkAnswer(index)}
-                        disabled={typeof selectedAnswers !== "string" || isActive === false}
-                        className={`${"customButton"} ${
-                          selectedAnswers === index
-                            ? selectedAnswers === currentQuestion.correctAnswer
-                              ? "stylesTrue"
-                              : "stylesFalse"
-                            : ""
-                        }`}
-                      >
-                        {answers}
-                      </button>
-                    ))}
-                  </div>
+                  <TextQuestion
+                    currentQuestion={currentQuestion}
+                    selectedAnswers={selectedAnswers}
+                    checkAnswer={checkAnswer}
+                    isActive={isActive}
+                  />
                 ) : (
-                  <div>
-                    {currentQuestion.answers.map((answers, index) => (
-                      <button
-                        className={`${"customButton"} ${
-                          selectedAnswers === index
-                            ? selectedAnswers === currentQuestion.correctAnswer
-                              ? "stylesTrue"
-                              : "stylesFalse"
-                            : ""
-                        }`}
-                        key={index}
-                        onClick={() => checkAnswer(index)}
-                        disabled={typeof selectedAnswers !== "string" ||isActive === false}
-                      >
-                        <img src={answers} alt="" />
-                      </button>
-                    ))}
-                  </div>
+                  <ImageQuestion
+                    currentQuestion={currentQuestion}
+                    selectedAnswers={selectedAnswers}
+                    checkAnswer={checkAnswer}
+                    isActive={isActive}
+                  />
                 )}
 
-
                 <div>
-                  {selectedAnswers === currentQuestion.correctAnswer ? (
+                  {selectedAnswers === currentQuestion.correctAnswer && (
                     <h3 className="correct">
                       {currentQuestion.messageForCorrectAnswer}
                     </h3>
-                  ) : (
-                    ""
                   )}
                   {selectedAnswers !== currentQuestion.correctAnswer &&
-                  typeof selectedAnswers !== "string" ? (
-                    <h3 className="error">
-                      {currentQuestion.messageForIncorrectAnswer}
-                    </h3>
-                  ) : (
-                    ""
-                  )}
+                    typeof selectedAnswers !== "string" && (
+                      <h3 className="error">
+                        {currentQuestion.messageForIncorrectAnswer}
+                      </h3>
+                    )}
                 </div>
 
                 <Button
@@ -150,11 +107,11 @@ const page = () => {
                   variant="contained"
                   sx={{ marginTop: "1rem" }}
                 >
-                  next
+                  Next
                 </Button>
               </div>
             </div>
-          ) :(
+          ) : (
             <div>
               <h4>
                 Correct {numberCorrectAnswers}/{quizData.questions.length}
@@ -164,7 +121,7 @@ const page = () => {
                 variant="contained"
                 sx={{ display: "block" }}
               >
-                restart
+                Restart
               </Button>
             </div>
           )}
@@ -174,4 +131,56 @@ const page = () => {
   );
 };
 
-export default page;
+const TextQuestion = ({
+  currentQuestion,
+  selectedAnswers,
+  checkAnswer,
+  isActive,
+}) => (
+  <div>
+    {currentQuestion.answers.map((answer, index) => (
+      <button
+        key={index}
+        onClick={() => checkAnswer(index)}
+        disabled={typeof selectedAnswers !== "string" || !isActive}
+        className={`customButton ${
+          selectedAnswers === index
+            ? selectedAnswers === currentQuestion.correctAnswer
+              ? "stylesTrue"
+              : "stylesFalse"
+            : ""
+        }`}
+      >
+        {answer}
+      </button>
+    ))}
+  </div>
+);
+
+const ImageQuestion = ({
+  currentQuestion,
+  selectedAnswers,
+  checkAnswer,
+  isActive,
+}) => (
+  <div>
+    {currentQuestion.answers.map((answer, index) => (
+      <button
+        key={index}
+        onClick={() => checkAnswer(index)}
+        disabled={typeof selectedAnswers !== "string" || !isActive}
+        className={`customButton ${
+          selectedAnswers === index
+            ? selectedAnswers === currentQuestion.correctAnswer
+              ? "stylesTrue"
+              : "stylesFalse"
+            : ""
+        }`}
+      >
+        <img src={answer} alt="" />
+      </button>
+    ))}
+  </div>
+);
+
+export default QuizPage;

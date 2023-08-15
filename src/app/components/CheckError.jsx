@@ -14,7 +14,7 @@
         newFormErrors.password = "at least 6 characters"
     }
         FormError(newFormErrors)
-        console.log(newFormErrors)
+
 
 }
 

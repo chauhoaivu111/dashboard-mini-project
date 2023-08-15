@@ -7,7 +7,6 @@ const CountdownTimer = ({ timeLeft, setTimeLeft, isActive, setIsActive }) => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
 
-      console.log("interval", interval);
       return () => {
         clearInterval(interval);
       };

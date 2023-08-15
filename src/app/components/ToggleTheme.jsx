@@ -6,7 +6,7 @@ import { IconButton } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 
 const  ToggleTheme = () => {
-    const {darkMode, handleDarkModeToggle} = useThemeContext();
+const {darkMode, handleDarkModeToggle} = useThemeContext();
   return (
     <div>
       <Tooltip title ={darkMode ? "Light mode" : "Dark mode"}>
