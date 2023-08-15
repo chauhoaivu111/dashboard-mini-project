@@ -16,12 +16,15 @@ const CountdownTimer = ({ timeLeft, setTimeLeft, isActive, setIsActive }) => {
   }, [timeLeft, isActive, setIsActive, setTimeLeft]);
 
   return (
-    <div >
-      
-      <div className="frame_timeer">   
-        <p>{timeLeft}s</p>
+    <div className="main_frame_countdown">
+      <div className="cont">
+        <div className={isActive ? "spinners-stop" : ""}></div>
+        <span className="number">
+          {" "}
+          <p style={{color:"inherit"}}>{timeLeft}s</p>
+        </span>
       </div>
-      <h4 >Time</h4>
+      <h4>Time</h4>
     </div>
   );
 };

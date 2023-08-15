@@ -5,7 +5,6 @@ import { Button } from "@mui/material";
 import quizData from "@/app/components/data/quiz";
 import Countdown from "../../components/Countdown";
 import Shuffle from "../../components/Shuffle";
-
 const shuffledQuestions = Shuffle(quizData.questions);
 
 const QuizPage = () => {
@@ -16,8 +15,8 @@ const QuizPage = () => {
   const [startQuiz, setStartQuiz] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10);
   const [isActive, setIsActive] = useState(true);
-
   const currentQuestion = restartShuffledQuestions[currentQuestionIndex];
+  
 
   const checkAnswer = (indexAnswer) => {
     setSelectedAnswers(indexAnswer);
@@ -30,7 +29,7 @@ const QuizPage = () => {
   const nextQuestion = () => {
     setSelectedAnswers("");
     setCurrentQuestionIndex(currentQuestionIndex + 1);
-    handleReset();
+    handleResetTime();
     setIsActive(true);
   };
 
@@ -41,21 +40,23 @@ const QuizPage = () => {
     setRestartShuffledQuestions(Shuffle(quizData.questions));
   };
 
-  const handleReset = () => {
+  const handleResetTime = () => {
     setTimeLeft(10);
     setIsActive(true);
   };
 
-  const handleStart = () => {
+  const handleStartQuize = () => {
     setStartQuiz(true);
   };
 
+
+  console.log(currentQuestionIndex)
   return (
     <div className="main_frame_quiz">
       <h1>Quiz Game</h1>
 
       {startQuiz === false ? (
-        <Button onClick={handleStart} variant="contained">
+        <Button onClick={handleStartQuize} variant="contained">
           Start Game
         </Button>
       ) : (
@@ -70,7 +71,7 @@ const QuizPage = () => {
                   setIsActive={setIsActive}
                 />
 
-                <h2>{currentQuestion.question}</h2>
+                <h2>{currentQuestionIndex + 1} - {currentQuestion.question}</h2>
 
                 {currentQuestion.questionType === "text" ? (
                   <TextQuestion
@@ -113,9 +114,9 @@ const QuizPage = () => {
             </div>
           ) : (
             <div>
-              <h4>
+              <h2>
                 Correct {numberCorrectAnswers}/{quizData.questions.length}
-              </h4>
+              </h2>
               <Button
                 onClick={restartGame}
                 variant="contained"

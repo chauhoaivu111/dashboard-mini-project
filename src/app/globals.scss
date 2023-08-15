@@ -1,0 +1,148 @@
+
+/* button focus quiz and error --------------------------------------------------------------------------------------------------*/
+.customButton {
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    border: 2px solid gray;
+    width: 250px;
+    margin-top: 10px;
+    
+}
+
+.customButton:hover {
+    border-color: black;
+}
+
+.stylesTrue {
+    border-color: green;
+}
+
+.stylesFalse {
+    border-color:red;
+}
+
+
+.correct {
+
+    color: green;
+
+
+}
+
+.error{
+    color: red;
+}
+
+
+h3 {
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+
+img { 
+    width: 70%;
+    height: 65%;
+   
+  }
+
+/* main frame quiz-------------------------------------------------------------------------------------------------------  */
+
+.main_frame_quiz {
+    margin-left: 20px;
+    width: 100%;
+}
+
+/*  -----------------------------------coundown--------------------------------------------------------------------------- */
+
+.main_frame_countdown{
+    margin-left: 50px;
+} 
+  .cont {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 30px;
+    background-color: rgb(212, 213, 213);
+    margin-top: 60px;
+    z-index: 1000;
+  
+
+    &::after {
+        content: "";
+        width: 80px;
+        height: 80px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        background: inherit;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        z-index: 100;
+        border: 1px solid #aaa; 
+    }
+     
+  }
+  
+  .spinners-stop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 50px;
+    transform-origin: 0 0;
+    background-color: rgb(49, 225, 96);;
+    animation: spin 1s infinite linear;
+    z-index: 0;
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+  }
+  
+  .number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    margin-top: 28%;
+    z-index: 1000;
+  }
+
+  h1 {
+    z-index: 1000;
+    margin-top: 50px;
+
+  }
+  
+h4 {
+    margin-left: 10px;
+    margin-top: -50px;
+  }
+  p {
+      align-items: center;
+      text-align: center;
+      margin-top: 35%;
+      font-size: large;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  
+  

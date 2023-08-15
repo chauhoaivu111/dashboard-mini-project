@@ -13,7 +13,6 @@ const layout = ({ children }) => {
   const router = useRouter();
   const { auth } = Context();
 
-
   useEffect(() => {
     if (!auth) {
       router.push("/login");
