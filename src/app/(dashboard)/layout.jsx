@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Context } from "../components/AuthProvider";
+import { Context } from "../context/AuthProvider";
 import { useRouter } from "next/navigation";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";

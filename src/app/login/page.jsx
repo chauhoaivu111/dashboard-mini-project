@@ -3,7 +3,7 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { Context } from "../components/AuthProvider";
+import { Context } from "../context/AuthProvider";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CheckError } from "../components/CheckError";

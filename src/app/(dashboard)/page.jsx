@@ -1,5 +1,5 @@
 "use client";
-import { Context } from "../components/AuthProvider";
+import { Context } from "../context/AuthProvider";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import FaceIcon from "@mui/icons-material/Face";

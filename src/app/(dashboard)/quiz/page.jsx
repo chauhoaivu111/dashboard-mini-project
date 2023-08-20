@@ -2,7 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@mui/material";
-import quizData from "@/app/components/data/quiz";
+import quizData from "@/app/data/quiz";
 import Countdown from "../../components/Countdown";
 import Shuffle from "../../components/Shuffle";
 const shuffledQuestions = Shuffle(quizData.questions);
